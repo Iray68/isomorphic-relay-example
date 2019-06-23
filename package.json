@@ -5,7 +5,7 @@
     "build": "npm run relay && npm run clean && BABEL_ENV=server babel src -d dist",
     "build:client": "webpack --mode production",
     "start": "npm run build && npm run build:client && node dist/server",
-    "relay": "relay-compiler --src ./src/components --schema ./src/middlewares/schema.graphql"
+    "relay": "relay-compiler --src ./src/components --schema ./src/middlewares/schema.graphql --exclude **/**test.js"
   },
   "name": "myexpress",
   "version": "1.0.0",
