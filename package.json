@@ -1,0 +1,57 @@
+{
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf ./dist",
+    "build": "npm run relay && npm run clean && BABEL_ENV=server babel src -d dist",
+    "build:client": "webpack --mode production",
+    "start": "npm run build && npm run build:client && node dist/server",
+    "relay": "relay-compiler --src ./src/components --schema ./src/middlewares/schema.graphql"
+  },
+  "name": "myexpress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "babel-plugin-relay": "^4.0.0",
+    "css-loader": "^2.1.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "html-webpack-plugin": "^3.2.0",
+    "http-proxy-middleware": "^0.19.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.8.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "react-test-renderer": "^16.8.6",
+    "relay-compiler": "^4.0.0",
+    "relay-test-utils": "^5.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.0",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.1",
+    "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^5.5.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-relay": "^4.0.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  }
+}

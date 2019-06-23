@@ -1,0 +1,48 @@
+  type Attachment {
+    label: String, uri: String
+  }
+
+  type Project {
+    _id: String,
+    name: String,
+    summary: String,
+    attachments: [ Attachment ],
+    members:[ String ],
+  }
+
+  type Experience {
+    company: String,
+    position: String,
+    highlights: [String],
+    startDate: String,
+    website: String
+  }
+
+  type Profile {
+     network: String,
+     username: String,
+     url: String
+  }
+
+  type Skill {
+    name: String,
+    level: String,
+    keywords: [ String ]
+  }
+
+  type User {
+    name: String,
+    label: String,
+    description: String,
+    summary: String,
+    website: String,
+    experiences: [ Experience ],
+    skills: [ Skill ],
+    projects: [ Project ],
+    profiles: [ Profile ]
+  }
+
+  type Query {
+    user(name: String): User
+    project(id: ID!): Project
+  }
