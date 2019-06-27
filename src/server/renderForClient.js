@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import rl from 'readline';
 import environment from '../relay/environment';
 import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
@@ -27,14 +28,13 @@ export const renderForClient = async (req, res) => {
       </ReactRelayContext.Provider>
   );
 
-  fs.readFile(HTML_FILE, 'utf8', (err, data) => {
-    if (err) {
-      console.log(`read html Error: ${err}`);
-      return res.status(404).end();
-    }
-
-    const html = injectApp(data, rendered);
-    res.send(html);
+  rl.createInterface({
+    input: fs.createReadStream(HTML_FILE),
+    terminal: false
+  }).on('line', (line) => {
+      res.write(line);
+  }).on('close', () => {
+    res.end();
   });
 
 };
